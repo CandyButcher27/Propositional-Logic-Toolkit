@@ -62,11 +62,11 @@ g++ -std=c++17 -o propositional_logic main.cpp
 ```
 2. **Run the program:**
 
-# Linux/macOS:
+### Linux/macOS:
 ```bash
 ./propositional_logic
 ```
-# Windows
+### Windows
 ```bash
 propositional_logic.exe
 ```
