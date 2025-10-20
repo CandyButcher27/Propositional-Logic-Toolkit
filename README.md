@@ -4,7 +4,7 @@ A C++ console application for working with **propositional logic expressions**. 
 
 ---
 
-## Features
+## Features - main.cpp
 
 1. **Convert Infix to Prefix**  
    - Input a logical expression in infix form (e.g., `(P + Q) * ~R`) and convert it to prefix notation.  
@@ -103,6 +103,8 @@ propositional_logic.exe
 - Input is **case-insensitive** for truth values (`T/t/1` = True, `F/f/0` = False).  
 - The program uses a **visual tree representation** for better understanding of formula structure.  
 - Computation times are reported in **microseconds** for the algorithm and **milliseconds** for total time including I/O.
+
+
 
 ## Documentation
 
