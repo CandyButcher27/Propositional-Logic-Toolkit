@@ -104,3 +104,16 @@ propositional_logic.exe
 - The program uses a **visual tree representation** for better understanding of formula structure.  
 - Computation times are reported in **microseconds** for the algorithm and **milliseconds** for total time including I/O.
 
+## Documentation
+
+The project documentation is generated using **Doxygen**.
+
+
+### To regenerate documentation locally
+
+1. Make sure **Doxygen** is installed.  
+2. Navigate to the project folder in the terminal:  
+
+```bash
+doxygen Doxyfile
+```
