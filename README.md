@@ -62,10 +62,14 @@ g++ -std=c++17 -o propositional_logic main.cpp
 ```
 2. **Run the program:**
 
+# Linux/macOS:
 ```bash
 ./propositional_logic
 ```
-
+# Windows
+```bash
+propositional_logic.exe
+```
 ## Example Workflow
 
 1. Select **1** to convert an infix expression to prefix notation.  
