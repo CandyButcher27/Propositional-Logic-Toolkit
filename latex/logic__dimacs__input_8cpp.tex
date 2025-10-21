@@ -1,0 +1,265 @@
+\doxysection{C\+:/\+Users/tarun/\+BITS/3-\/1/\+CS 3-\/1/\+Logic/\+Assignment stuff/logic\+\_\+dimacs\+\_\+input.cpp File Reference}
+\hypertarget{logic__dimacs__input_8cpp}{}\label{logic__dimacs__input_8cpp}\index{C:/Users/tarun/BITS/3-\/1/CS 3-\/1/Logic/Assignment stuff/logic\_dimacs\_input.cpp@{C:/Users/tarun/BITS/3-\/1/CS 3-\/1/Logic/Assignment stuff/logic\_dimacs\_input.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{logic__dimacs__input_8cpp_a33f9fd8aed3cdad5a18da7106aaa4cfb}{Literal}} = int
+\item 
+using \mbox{\hyperlink{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}{Clause}} = vector$<$\mbox{\hyperlink{logic__dimacs__input_8cpp_a33f9fd8aed3cdad5a18da7106aaa4cfb}{Literal}}$>$
+\item 
+using \mbox{\hyperlink{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}{Dimacs\+CNF}} = vector$<$\mbox{\hyperlink{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}{Clause}}$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_ac792f08ed5f8708833ac64a61310dd03}{is\+Operator}} (char c)
+\item 
+void \mbox{\hyperlink{logic__dimacs__input_8cpp_aa063afd2f5d9247d847423e8a1250a58}{delete\+Tree}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_aea311c2e575179de7c6cd33d82544254}{copy\+Tree}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+string \mbox{\hyperlink{logic__dimacs__input_8cpp_adcb4031b2dee72ddd4c6a1a934145a9b}{infix\+To\+Prefix}} (string infix)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_a38d61b0060d3ad7d9078b92985b05355}{build\+Parse\+Tree}} (const string \&prefix)
+\item 
+void \mbox{\hyperlink{logic__dimacs__input_8cpp_aa8fc29f2849f5522b0094c67404fdbfb}{print\+Tree}} (const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+int \mbox{\hyperlink{logic__dimacs__input_8cpp_a245e85505b00fee351af23c1c78949ae}{get\+Tree\+Height}} (const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+string \mbox{\hyperlink{logic__dimacs__input_8cpp_a6e944f913b388eba3e545abf08b9005f}{parse\+Tree\+To\+Infix}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+int \mbox{\hyperlink{logic__dimacs__input_8cpp_a0cf0fba67810f8bc1e9dc8520818d157}{get\+Precedence}} (char op)
+\item 
+int \mbox{\hyperlink{logic__dimacs__input_8cpp_a3944103191741cde79cc2e8e0d6afbfe}{find\+Main\+Operator}} (const string \&infix)
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_af07f3e45695092f96712903a1f91cfff}{is\+Fully\+Enclosed}} (const string \&infix)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_af9a7f8ea5c347ab10ade8b5398141204}{build\+Parse\+Tree\+Recursive}} (const string \&prefix, int \&index)
+\item 
+void \mbox{\hyperlink{logic__dimacs__input_8cpp_a007a44f83b4d3ba937963cc986346750}{get\+Variables}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root, set$<$ char $>$ \&vars)
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_affe88ac12324bd34a502f3a0032e5212}{evaluate}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root, const unordered\+\_\+map$<$ char, bool $>$ \&values)
+\item 
+void \mbox{\hyperlink{logic__dimacs__input_8cpp_a79468f95027d3101b5874feb78fb013d}{print\+Infix\+From\+Tree}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_a4f463506de7c891a6bf5303a86e7f0fa}{impl\+\_\+free}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_ac9d196845cc97007640acae605d0d181}{nnf}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_ae38436427923cefe7b572e848a462880}{distribute}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}a, \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}b)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{logic__dimacs__input_8cpp_aa2a4fec9c418b7c081daff35002be63f}{cnf}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_a795a8983b219065e25995a3840c49fc7}{is\+\_\+clause\+\_\+true}} (string clause)
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_ab80c0872da7175583d4877c3aa087ae6}{check\+\_\+cnf\+\_\+valid}} (string formula)
+\item 
+\mbox{\hyperlink{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}{Dimacs\+CNF}} \mbox{\hyperlink{logic__dimacs__input_8cpp_aaa9464cc04c26891b13bdbcbd14fc0a4}{read\+DIMACSCNF}} (const string \&dimacs\+Input, int \&num\+Vars, int \&num\+Clauses)
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_a72cedf7a44d85c1e2904c193c71e5c77}{is\+\_\+dimacs\+\_\+clause\+\_\+true}} (const \mbox{\hyperlink{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}{Clause}} \&clause)
+\item 
+bool \mbox{\hyperlink{logic__dimacs__input_8cpp_addd1daccda157798f2064780c907254a}{check\+\_\+dimacs\+\_\+valid}} (const \mbox{\hyperlink{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}{Dimacs\+CNF}} \&formula)
+\item 
+void \mbox{\hyperlink{logic__dimacs__input_8cpp_aba5bd9067aa6f261123165a337c7957d}{show\+Menu}} ()
+\item 
+int \mbox{\hyperlink{logic__dimacs__input_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{logic__dimacs__input_8cpp_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!Clause@{Clause}}
+\index{Clause@{Clause}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{Clause}{Clause}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6} 
+using \mbox{\hyperlink{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}{Clause}} = vector$<$\mbox{\hyperlink{logic__dimacs__input_8cpp_a33f9fd8aed3cdad5a18da7106aaa4cfb}{Literal}}$>$}
+
+\Hypertarget{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!DimacsCNF@{DimacsCNF}}
+\index{DimacsCNF@{DimacsCNF}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{DimacsCNF}{DimacsCNF}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813} 
+using \mbox{\hyperlink{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}{Dimacs\+CNF}} = vector$<$\mbox{\hyperlink{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}{Clause}}$>$}
+
+\Hypertarget{logic__dimacs__input_8cpp_a33f9fd8aed3cdad5a18da7106aaa4cfb}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!Literal@{Literal}}
+\index{Literal@{Literal}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{Literal}{Literal}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a33f9fd8aed3cdad5a18da7106aaa4cfb} 
+using \mbox{\hyperlink{logic__dimacs__input_8cpp_a33f9fd8aed3cdad5a18da7106aaa4cfb}{Literal}} = int}
+
+
+
+\label{doc-func-members}
+\Hypertarget{logic__dimacs__input_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{logic__dimacs__input_8cpp_a38d61b0060d3ad7d9078b92985b05355}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!buildParseTree@{buildParseTree}}
+\index{buildParseTree@{buildParseTree}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{buildParseTree()}{buildParseTree()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a38d61b0060d3ad7d9078b92985b05355} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} build\+Parse\+Tree (\begin{DoxyParamCaption}\item[{const string \&}]{prefix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_af9a7f8ea5c347ab10ade8b5398141204}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!buildParseTreeRecursive@{buildParseTreeRecursive}}
+\index{buildParseTreeRecursive@{buildParseTreeRecursive}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{buildParseTreeRecursive()}{buildParseTreeRecursive()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_af9a7f8ea5c347ab10ade8b5398141204} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} build\+Parse\+Tree\+Recursive (\begin{DoxyParamCaption}\item[{const string \&}]{prefix}{, }\item[{int \&}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_ab80c0872da7175583d4877c3aa087ae6}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!check\_cnf\_valid@{check\_cnf\_valid}}
+\index{check\_cnf\_valid@{check\_cnf\_valid}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_cnf\_valid()}{check\_cnf\_valid()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_ab80c0872da7175583d4877c3aa087ae6} 
+bool check\+\_\+cnf\+\_\+valid (\begin{DoxyParamCaption}\item[{string}]{formula}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_addd1daccda157798f2064780c907254a}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!check\_dimacs\_valid@{check\_dimacs\_valid}}
+\index{check\_dimacs\_valid@{check\_dimacs\_valid}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_dimacs\_valid()}{check\_dimacs\_valid()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_addd1daccda157798f2064780c907254a} 
+bool check\+\_\+dimacs\+\_\+valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}{Dimacs\+CNF}} \&}]{formula}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_aa2a4fec9c418b7c081daff35002be63f}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!cnf@{cnf}}
+\index{cnf@{cnf}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{cnf()}{cnf()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_aa2a4fec9c418b7c081daff35002be63f} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} cnf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_aea311c2e575179de7c6cd33d82544254}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!copyTree@{copyTree}}
+\index{copyTree@{copyTree}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{copyTree()}{copyTree()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_aea311c2e575179de7c6cd33d82544254} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} copy\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_aa063afd2f5d9247d847423e8a1250a58}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!deleteTree@{deleteTree}}
+\index{deleteTree@{deleteTree}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{deleteTree()}{deleteTree()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_aa063afd2f5d9247d847423e8a1250a58} 
+void delete\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_ae38436427923cefe7b572e848a462880}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!distribute@{distribute}}
+\index{distribute@{distribute}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{distribute()}{distribute()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_ae38436427923cefe7b572e848a462880} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} distribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_affe88ac12324bd34a502f3a0032e5212}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_affe88ac12324bd34a502f3a0032e5212} 
+bool evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const unordered\+\_\+map$<$ char, bool $>$ \&}]{values}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a3944103191741cde79cc2e8e0d6afbfe}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!findMainOperator@{findMainOperator}}
+\index{findMainOperator@{findMainOperator}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{findMainOperator()}{findMainOperator()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a3944103191741cde79cc2e8e0d6afbfe} 
+int find\+Main\+Operator (\begin{DoxyParamCaption}\item[{const string \&}]{infix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a0cf0fba67810f8bc1e9dc8520818d157}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!getPrecedence@{getPrecedence}}
+\index{getPrecedence@{getPrecedence}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{getPrecedence()}{getPrecedence()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a0cf0fba67810f8bc1e9dc8520818d157} 
+int get\+Precedence (\begin{DoxyParamCaption}\item[{char}]{op}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a245e85505b00fee351af23c1c78949ae}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!getTreeHeight@{getTreeHeight}}
+\index{getTreeHeight@{getTreeHeight}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{getTreeHeight()}{getTreeHeight()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a245e85505b00fee351af23c1c78949ae} 
+int get\+Tree\+Height (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a007a44f83b4d3ba937963cc986346750}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!getVariables@{getVariables}}
+\index{getVariables@{getVariables}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{getVariables()}{getVariables()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a007a44f83b4d3ba937963cc986346750} 
+void get\+Variables (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{set$<$ char $>$ \&}]{vars}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a4f463506de7c891a6bf5303a86e7f0fa}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!impl\_free@{impl\_free}}
+\index{impl\_free@{impl\_free}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{impl\_free()}{impl\_free()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a4f463506de7c891a6bf5303a86e7f0fa} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} impl\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_adcb4031b2dee72ddd4c6a1a934145a9b}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!infixToPrefix@{infixToPrefix}}
+\index{infixToPrefix@{infixToPrefix}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{infixToPrefix()}{infixToPrefix()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_adcb4031b2dee72ddd4c6a1a934145a9b} 
+string infix\+To\+Prefix (\begin{DoxyParamCaption}\item[{string}]{infix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a795a8983b219065e25995a3840c49fc7}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!is\_clause\_true@{is\_clause\_true}}
+\index{is\_clause\_true@{is\_clause\_true}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_clause\_true()}{is\_clause\_true()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a795a8983b219065e25995a3840c49fc7} 
+bool is\+\_\+clause\+\_\+true (\begin{DoxyParamCaption}\item[{string}]{clause}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a72cedf7a44d85c1e2904c193c71e5c77}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!is\_dimacs\_clause\_true@{is\_dimacs\_clause\_true}}
+\index{is\_dimacs\_clause\_true@{is\_dimacs\_clause\_true}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_dimacs\_clause\_true()}{is\_dimacs\_clause\_true()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a72cedf7a44d85c1e2904c193c71e5c77} 
+bool is\+\_\+dimacs\+\_\+clause\+\_\+true (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{logic__dimacs__input_8cpp_abc6a573a130a0848888e030df651f1b6}{Clause}} \&}]{clause}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_af07f3e45695092f96712903a1f91cfff}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!isFullyEnclosed@{isFullyEnclosed}}
+\index{isFullyEnclosed@{isFullyEnclosed}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{isFullyEnclosed()}{isFullyEnclosed()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_af07f3e45695092f96712903a1f91cfff} 
+bool is\+Fully\+Enclosed (\begin{DoxyParamCaption}\item[{const string \&}]{infix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_ac792f08ed5f8708833ac64a61310dd03}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!isOperator@{isOperator}}
+\index{isOperator@{isOperator}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{isOperator()}{isOperator()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_ac792f08ed5f8708833ac64a61310dd03} 
+bool is\+Operator (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!main@{main}}
+\index{main@{main}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_ac9d196845cc97007640acae605d0d181}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!nnf@{nnf}}
+\index{nnf@{nnf}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{nnf()}{nnf()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_ac9d196845cc97007640acae605d0d181} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} nnf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a6e944f913b388eba3e545abf08b9005f}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!parseTreeToInfix@{parseTreeToInfix}}
+\index{parseTreeToInfix@{parseTreeToInfix}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{parseTreeToInfix()}{parseTreeToInfix()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a6e944f913b388eba3e545abf08b9005f} 
+string parse\+Tree\+To\+Infix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_a79468f95027d3101b5874feb78fb013d}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!printInfixFromTree@{printInfixFromTree}}
+\index{printInfixFromTree@{printInfixFromTree}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{printInfixFromTree()}{printInfixFromTree()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_a79468f95027d3101b5874feb78fb013d} 
+void print\+Infix\+From\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_aa8fc29f2849f5522b0094c67404fdbfb}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!printTree@{printTree}}
+\index{printTree@{printTree}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{printTree()}{printTree()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_aa8fc29f2849f5522b0094c67404fdbfb} 
+void print\+Tree (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_aaa9464cc04c26891b13bdbcbd14fc0a4}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!readDIMACSCNF@{readDIMACSCNF}}
+\index{readDIMACSCNF@{readDIMACSCNF}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{readDIMACSCNF()}{readDIMACSCNF()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_aaa9464cc04c26891b13bdbcbd14fc0a4} 
+\mbox{\hyperlink{logic__dimacs__input_8cpp_acdb9d97201cc207622b35530c1eae813}{Dimacs\+CNF}} read\+DIMACSCNF (\begin{DoxyParamCaption}\item[{const string \&}]{dimacs\+Input}{, }\item[{int \&}]{num\+Vars}{, }\item[{int \&}]{num\+Clauses}{}\end{DoxyParamCaption})}
+
+\Hypertarget{logic__dimacs__input_8cpp_aba5bd9067aa6f261123165a337c7957d}\index{logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}!showMenu@{showMenu}}
+\index{showMenu@{showMenu}!logic\_dimacs\_input.cpp@{logic\_dimacs\_input.cpp}}
+\doxysubsubsection{\texorpdfstring{showMenu()}{showMenu()}}
+{\footnotesize\ttfamily \label{logic__dimacs__input_8cpp_aba5bd9067aa6f261123165a337c7957d} 
+void show\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+

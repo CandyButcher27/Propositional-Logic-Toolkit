@@ -1,0 +1,224 @@
+\doxysection{C\+:/\+Users/tarun/\+BITS/3-\/1/\+CS 3-\/1/\+Logic/\+Assignment stuff/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{C:/Users/tarun/BITS/3-\/1/CS 3-\/1/Logic/Assignment stuff/main.cpp@{C:/Users/tarun/BITS/3-\/1/CS 3-\/1/Logic/Assignment stuff/main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{main_8cpp_ac792f08ed5f8708833ac64a61310dd03}{is\+Operator}} (char c)
+\item 
+void \mbox{\hyperlink{main_8cpp_aa063afd2f5d9247d847423e8a1250a58}{delete\+Tree}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_aea311c2e575179de7c6cd33d82544254}{copy\+Tree}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+string \mbox{\hyperlink{main_8cpp_adcb4031b2dee72ddd4c6a1a934145a9b}{infix\+To\+Prefix}} (string infix)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_a38d61b0060d3ad7d9078b92985b05355}{build\+Parse\+Tree}} (const string \&prefix)
+\item 
+void \mbox{\hyperlink{main_8cpp_aa8fc29f2849f5522b0094c67404fdbfb}{print\+Tree}} (const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+int \mbox{\hyperlink{main_8cpp_a245e85505b00fee351af23c1c78949ae}{get\+Tree\+Height}} (const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+string \mbox{\hyperlink{main_8cpp_a6e944f913b388eba3e545abf08b9005f}{parse\+Tree\+To\+Infix}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+int \mbox{\hyperlink{main_8cpp_a0cf0fba67810f8bc1e9dc8520818d157}{get\+Precedence}} (char op)
+\item 
+int \mbox{\hyperlink{main_8cpp_a3944103191741cde79cc2e8e0d6afbfe}{find\+Main\+Operator}} (const string \&infix)
+\item 
+bool \mbox{\hyperlink{main_8cpp_af07f3e45695092f96712903a1f91cfff}{is\+Fully\+Enclosed}} (const string \&infix)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_af9a7f8ea5c347ab10ade8b5398141204}{build\+Parse\+Tree\+Recursive}} (const string \&prefix, int \&index)
+\item 
+int \mbox{\hyperlink{main_8cpp_a167c851c8d6b05b3f680cc9bcea51c67}{get\+Subtree\+Width}} (const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+int \mbox{\hyperlink{main_8cpp_ada4ca6bc4676c20c1b27b9b93e292a14}{fill\+Grid\+And\+Get\+Center}} (const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}node, vector$<$ string $>$ \&grid, int row, int col\+\_\+start)
+\item 
+void \mbox{\hyperlink{main_8cpp_a007a44f83b4d3ba937963cc986346750}{get\+Variables}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root, set$<$ char $>$ \&vars)
+\item 
+bool \mbox{\hyperlink{main_8cpp_affe88ac12324bd34a502f3a0032e5212}{evaluate}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root, const unordered\+\_\+map$<$ char, bool $>$ \&values)
+\item 
+void \mbox{\hyperlink{main_8cpp_a79468f95027d3101b5874feb78fb013d}{print\+Infix\+From\+Tree}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_a4f463506de7c891a6bf5303a86e7f0fa}{impl\+\_\+free}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_ac9d196845cc97007640acae605d0d181}{nnf}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_ae38436427923cefe7b572e848a462880}{distribute}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}a, \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}b)
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_aa2a4fec9c418b7c081daff35002be63f}{cnf}} (\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}root)
+\item 
+bool \mbox{\hyperlink{main_8cpp_a795a8983b219065e25995a3840c49fc7}{is\+\_\+clause\+\_\+true}} (string clause)
+\item 
+bool \mbox{\hyperlink{main_8cpp_ab80c0872da7175583d4877c3aa087ae6}{check\+\_\+cnf\+\_\+valid}} (string formula)
+\item 
+void \mbox{\hyperlink{main_8cpp_aba5bd9067aa6f261123165a337c7957d}{show\+Menu}} ()
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a38d61b0060d3ad7d9078b92985b05355}\index{main.cpp@{main.cpp}!buildParseTree@{buildParseTree}}
+\index{buildParseTree@{buildParseTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buildParseTree()}{buildParseTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_a38d61b0060d3ad7d9078b92985b05355} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} build\+Parse\+Tree (\begin{DoxyParamCaption}\item[{const string \&}]{prefix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_af9a7f8ea5c347ab10ade8b5398141204}\index{main.cpp@{main.cpp}!buildParseTreeRecursive@{buildParseTreeRecursive}}
+\index{buildParseTreeRecursive@{buildParseTreeRecursive}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buildParseTreeRecursive()}{buildParseTreeRecursive()}}
+{\footnotesize\ttfamily \label{main_8cpp_af9a7f8ea5c347ab10ade8b5398141204} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} build\+Parse\+Tree\+Recursive (\begin{DoxyParamCaption}\item[{const string \&}]{prefix}{, }\item[{int \&}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ab80c0872da7175583d4877c3aa087ae6}\index{main.cpp@{main.cpp}!check\_cnf\_valid@{check\_cnf\_valid}}
+\index{check\_cnf\_valid@{check\_cnf\_valid}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_cnf\_valid()}{check\_cnf\_valid()}}
+{\footnotesize\ttfamily \label{main_8cpp_ab80c0872da7175583d4877c3aa087ae6} 
+bool check\+\_\+cnf\+\_\+valid (\begin{DoxyParamCaption}\item[{string}]{formula}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aa2a4fec9c418b7c081daff35002be63f}\index{main.cpp@{main.cpp}!cnf@{cnf}}
+\index{cnf@{cnf}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{cnf()}{cnf()}}
+{\footnotesize\ttfamily \label{main_8cpp_aa2a4fec9c418b7c081daff35002be63f} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} cnf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aea311c2e575179de7c6cd33d82544254}\index{main.cpp@{main.cpp}!copyTree@{copyTree}}
+\index{copyTree@{copyTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{copyTree()}{copyTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_aea311c2e575179de7c6cd33d82544254} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} copy\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aa063afd2f5d9247d847423e8a1250a58}\index{main.cpp@{main.cpp}!deleteTree@{deleteTree}}
+\index{deleteTree@{deleteTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{deleteTree()}{deleteTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_aa063afd2f5d9247d847423e8a1250a58} 
+void delete\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ae38436427923cefe7b572e848a462880}\index{main.cpp@{main.cpp}!distribute@{distribute}}
+\index{distribute@{distribute}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{distribute()}{distribute()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae38436427923cefe7b572e848a462880} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} distribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_affe88ac12324bd34a502f3a0032e5212}\index{main.cpp@{main.cpp}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{main_8cpp_affe88ac12324bd34a502f3a0032e5212} 
+bool evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const unordered\+\_\+map$<$ char, bool $>$ \&}]{values}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ada4ca6bc4676c20c1b27b9b93e292a14}\index{main.cpp@{main.cpp}!fillGridAndGetCenter@{fillGridAndGetCenter}}
+\index{fillGridAndGetCenter@{fillGridAndGetCenter}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{fillGridAndGetCenter()}{fillGridAndGetCenter()}}
+{\footnotesize\ttfamily \label{main_8cpp_ada4ca6bc4676c20c1b27b9b93e292a14} 
+int fill\+Grid\+And\+Get\+Center (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{vector$<$ string $>$ \&}]{grid}{, }\item[{int}]{row}{, }\item[{int}]{col\+\_\+start}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a3944103191741cde79cc2e8e0d6afbfe}\index{main.cpp@{main.cpp}!findMainOperator@{findMainOperator}}
+\index{findMainOperator@{findMainOperator}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{findMainOperator()}{findMainOperator()}}
+{\footnotesize\ttfamily \label{main_8cpp_a3944103191741cde79cc2e8e0d6afbfe} 
+int find\+Main\+Operator (\begin{DoxyParamCaption}\item[{const string \&}]{infix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a0cf0fba67810f8bc1e9dc8520818d157}\index{main.cpp@{main.cpp}!getPrecedence@{getPrecedence}}
+\index{getPrecedence@{getPrecedence}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{getPrecedence()}{getPrecedence()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0cf0fba67810f8bc1e9dc8520818d157} 
+int get\+Precedence (\begin{DoxyParamCaption}\item[{char}]{op}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a167c851c8d6b05b3f680cc9bcea51c67}\index{main.cpp@{main.cpp}!getSubtreeWidth@{getSubtreeWidth}}
+\index{getSubtreeWidth@{getSubtreeWidth}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{getSubtreeWidth()}{getSubtreeWidth()}}
+{\footnotesize\ttfamily \label{main_8cpp_a167c851c8d6b05b3f680cc9bcea51c67} 
+int get\+Subtree\+Width (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a245e85505b00fee351af23c1c78949ae}\index{main.cpp@{main.cpp}!getTreeHeight@{getTreeHeight}}
+\index{getTreeHeight@{getTreeHeight}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{getTreeHeight()}{getTreeHeight()}}
+{\footnotesize\ttfamily \label{main_8cpp_a245e85505b00fee351af23c1c78949ae} 
+int get\+Tree\+Height (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a007a44f83b4d3ba937963cc986346750}\index{main.cpp@{main.cpp}!getVariables@{getVariables}}
+\index{getVariables@{getVariables}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{getVariables()}{getVariables()}}
+{\footnotesize\ttfamily \label{main_8cpp_a007a44f83b4d3ba937963cc986346750} 
+void get\+Variables (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{set$<$ char $>$ \&}]{vars}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a4f463506de7c891a6bf5303a86e7f0fa}\index{main.cpp@{main.cpp}!impl\_free@{impl\_free}}
+\index{impl\_free@{impl\_free}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{impl\_free()}{impl\_free()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4f463506de7c891a6bf5303a86e7f0fa} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} impl\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_adcb4031b2dee72ddd4c6a1a934145a9b}\index{main.cpp@{main.cpp}!infixToPrefix@{infixToPrefix}}
+\index{infixToPrefix@{infixToPrefix}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{infixToPrefix()}{infixToPrefix()}}
+{\footnotesize\ttfamily \label{main_8cpp_adcb4031b2dee72ddd4c6a1a934145a9b} 
+string infix\+To\+Prefix (\begin{DoxyParamCaption}\item[{string}]{infix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a795a8983b219065e25995a3840c49fc7}\index{main.cpp@{main.cpp}!is\_clause\_true@{is\_clause\_true}}
+\index{is\_clause\_true@{is\_clause\_true}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_clause\_true()}{is\_clause\_true()}}
+{\footnotesize\ttfamily \label{main_8cpp_a795a8983b219065e25995a3840c49fc7} 
+bool is\+\_\+clause\+\_\+true (\begin{DoxyParamCaption}\item[{string}]{clause}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_af07f3e45695092f96712903a1f91cfff}\index{main.cpp@{main.cpp}!isFullyEnclosed@{isFullyEnclosed}}
+\index{isFullyEnclosed@{isFullyEnclosed}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{isFullyEnclosed()}{isFullyEnclosed()}}
+{\footnotesize\ttfamily \label{main_8cpp_af07f3e45695092f96712903a1f91cfff} 
+bool is\+Fully\+Enclosed (\begin{DoxyParamCaption}\item[{const string \&}]{infix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ac792f08ed5f8708833ac64a61310dd03}\index{main.cpp@{main.cpp}!isOperator@{isOperator}}
+\index{isOperator@{isOperator}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{isOperator()}{isOperator()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac792f08ed5f8708833ac64a61310dd03} 
+bool is\+Operator (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ac9d196845cc97007640acae605d0d181}\index{main.cpp@{main.cpp}!nnf@{nnf}}
+\index{nnf@{nnf}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{nnf()}{nnf()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac9d196845cc97007640acae605d0d181} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} nnf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a6e944f913b388eba3e545abf08b9005f}\index{main.cpp@{main.cpp}!parseTreeToInfix@{parseTreeToInfix}}
+\index{parseTreeToInfix@{parseTreeToInfix}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{parseTreeToInfix()}{parseTreeToInfix()}}
+{\footnotesize\ttfamily \label{main_8cpp_a6e944f913b388eba3e545abf08b9005f} 
+string parse\+Tree\+To\+Infix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a79468f95027d3101b5874feb78fb013d}\index{main.cpp@{main.cpp}!printInfixFromTree@{printInfixFromTree}}
+\index{printInfixFromTree@{printInfixFromTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printInfixFromTree()}{printInfixFromTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_a79468f95027d3101b5874feb78fb013d} 
+void print\+Infix\+From\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aa8fc29f2849f5522b0094c67404fdbfb}\index{main.cpp@{main.cpp}!printTree@{printTree}}
+\index{printTree@{printTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printTree()}{printTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_aa8fc29f2849f5522b0094c67404fdbfb} 
+void print\+Tree (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aba5bd9067aa6f261123165a337c7957d}\index{main.cpp@{main.cpp}!showMenu@{showMenu}}
+\index{showMenu@{showMenu}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{showMenu()}{showMenu()}}
+{\footnotesize\ttfamily \label{main_8cpp_aba5bd9067aa6f261123165a337c7957d} 
+void show\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
