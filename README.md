@@ -121,7 +121,7 @@ doxygen Doxyfile
 ```
 
 # Project Members and Details
-1. **Punya Pratap Singh** (2023B3A70290H)
+1. **Punya Pratap Singh** (2023B3A70280H)
 2. **Tarun Pradeep Krishnamurthy** (2023B3A70398H)
 3. **Aditya Bhat** (2023B3A70448H)
 4. **Aryaman Srivastava** (2023B5A70764H)
