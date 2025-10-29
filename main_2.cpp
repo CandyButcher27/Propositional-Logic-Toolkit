@@ -12,7 +12,6 @@
 
 using namespace std;
 
-// --- Data Structures ---
 struct Node {
     string data; 
     Node* left;
@@ -25,12 +24,8 @@ using Literal = int;
 using Clause = vector<Literal>;
 using DimacsCNF = vector<Clause>;
 
-// --- Forward Declaration ---
-// FIX: Declaring the recursive helper function before its usage in buildParseTree
 Node* buildParseTree_helper(string& expression); 
 
-
-// --- Helper Functions ---
 bool isOperator(const string& s) {
     return s == "+" || s == "*" || s == "~" || s == ">";
 }
@@ -97,8 +92,6 @@ string infixToPrefix(string infix) {
             }
             if (!s.empty()) s.pop(); 
         } else if (isOperator(token)) {
-            // For infix-to-prefix, comparison needs to consider right-associativity 
-            // after reversal. For simplicity with standard precedence:
             while (!s.empty() && getPrecedence(s.top()) > getPrecedence(token)) {
                 prefix += s.top() + " ";
                 s.pop();
@@ -125,13 +118,12 @@ string infixToPrefix(string infix) {
         final_prefix += t + " ";
     }
     if (!final_prefix.empty()) {
-        final_prefix.pop_back(); // Remove trailing space
+        final_prefix.pop_back(); 
     }
     return final_prefix;
 }
 
 string getNextToken(string& expression) {
-    // Trims leading spaces
     expression.erase(0, expression.find_first_not_of(" \t\n\r"));
     if (expression.empty()) return "";
     
@@ -149,7 +141,6 @@ string getNextToken(string& expression) {
 
 Node* buildParseTree(string expression) {
     if (expression.empty()) return nullptr;
-    // We pass a copy of expression, but the recursive helper needs a reference to modify state
     return buildParseTree_helper(expression); 
 }
 
@@ -196,7 +187,6 @@ string parseTreeToInfix(Node* root) {
     string right = parseTreeToInfix(root->right);
 
     if (root->data == "~") {
-        // Add parenthesis if the child is a complex expression
         if(root->left && (root->left->data == "+" || root->left->data == "*" || root->left->data == ">")) {
              return "~(" + left + ")"; 
         }
@@ -207,7 +197,7 @@ string parseTreeToInfix(Node* root) {
 
 int getTreeHeight(Node* root) {
     if (root == nullptr) {
-        return -1; // Height of an empty tree is often defined as -1
+        return -1;
     }
     return 1 + max(getTreeHeight(root->left), getTreeHeight(root->right));
 }
@@ -236,7 +226,6 @@ bool evaluate(Node* root, const unordered_map<string, bool>& values) {
     
     bool left_val = evaluate(root->left, values);
     
-    // Binary operators
     if (root->data == "+" || root->data == "*" || root->data == ">") {
         bool right_val = evaluate(root->right, values);
         if (root->data == "+") return left_val || right_val;
@@ -253,7 +242,6 @@ Node* impl_free(Node* root) {
         Node* new_or = new Node("+");
         Node* new_not = new Node("~");
         
-        // A > B is logically equivalent to (~A + B)
         new_not->left = impl_free(root->left);
         new_or->left = new_not;
         new_or->right = impl_free(root->right);
@@ -269,13 +257,12 @@ Node* impl_free(Node* root) {
 Node* nnf(Node* root) {
     if (!root) return nullptr;
     
-    // Base Case: Literal (or negated literal)
     if (isOperand(root->data) || (root->data == "~" && isOperand(root->left->data))) return root;
 
     if (root->data == "~") {
         Node* child = root->left;
         
-        if (child->data == "~") { // Double Negation: ~(~A) -> A
+        if (child->data == "~") { 
             Node* grandchild = child->left;
             child->left = nullptr;
             delete root;
@@ -283,8 +270,7 @@ Node* nnf(Node* root) {
             return nnf(grandchild);
         }
         
-        // De Morgan's Law
-        if (child->data == "+") { // ~(A + B) -> ~A * ~B
+        if (child->data == "+") { 
             Node* new_and = new Node("*");
             Node* notA = new Node("~");
             Node* notB = new Node("~");
@@ -302,7 +288,7 @@ Node* nnf(Node* root) {
             delete child;
             return new_and;
         }
-        if (child->data == "*") { // ~(A * B) -> ~A + ~B
+        if (child->data == "*") { 
             Node* new_or = new Node("+");
             Node* notA = new Node("~");
             Node* notB = new Node("~");
@@ -322,7 +308,6 @@ Node* nnf(Node* root) {
         }
     }
     
-    // Recursive Case for +, * (and > which should be eliminated)
     root->left = nnf(root->left);
     root->right = nnf(root->right);
     return root;
@@ -359,10 +344,9 @@ Node* cnf(Node* root) {
             p_plus_r->right = r;
 
             Node* q_plus_r_copy = new Node("+");
-            q_plus_r_copy->left = copyTree(q); // Fix: need to copy Q here as P is detached
+            q_plus_r_copy->left = copyTree(q);
             q_plus_r_copy->right = copyTree(r); 
 
-            // Detach children before deletion to prevent double-delete
             l->left = nullptr;
             l->right = nullptr;
             root->right = nullptr;
@@ -394,7 +378,6 @@ Node* cnf(Node* root) {
             p_plus_s->left = p;
             p_plus_s->right = s;
             
-            // Detach children
             root->left = nullptr;
             r->left = nullptr;
             r->right = nullptr;
@@ -411,6 +394,22 @@ Node* cnf(Node* root) {
     return root;
 }
 
+string treeToInfixString(Node* root) {
+    if (root == nullptr) return "";
+    if (isOperand(root->data)) return root->data;
+
+    string left = treeToInfixString(root->left);
+    string right = treeToInfixString(root->right);
+
+    if (root->data == "~") {
+        if(root->left && (root->left->data == "+" || root->left->data == "*" || root->left->data == ">")) {
+             return "~(" + left + ")"; 
+        }
+        return "~" + left;
+    }
+    return "(" + left + " " + root->data + " " + right + ")";
+}
+
 void printInfixFromTree(Node* root) {
     if (root == nullptr) return;
     if (isOperand(root->data)) {
@@ -419,7 +418,6 @@ void printInfixFromTree(Node* root) {
     }
     if (root->data == "~") {
         cout << "~";
-        // Check if negation target needs parenthesis
         if(root->left && (root->left->data == "+" || root->left->data == "*" || root->left->data == ">" || root->left->data == "~")) {
              cout << "(";
              printInfixFromTree(root->left);
@@ -429,7 +427,6 @@ void printInfixFromTree(Node* root) {
         }
         return;
     }
-    // For binary operators, always use parenthesis in NNF/CNF display for clarity
     cout << "(";
     printInfixFromTree(root->left);
     cout << " " << root->data << " ";
@@ -452,7 +449,6 @@ bool check_cnf_valid(const string& cnf_formula) {
              continue;
         }
         
-        // Remove surrounding parentheses for the clause
         if(clause_str.front() == '(' && clause_str.back() == ')') {
             clause_str = clause_str.substr(1, clause_str.length() - 2);
         }
@@ -465,7 +461,7 @@ bool check_cnf_valid(const string& cnf_formula) {
             if (tokens[i] == "~") {
                 if (i + 1 < tokens.size() && isOperand(tokens[i+1])) {
                     negated_literals.insert(tokens[i+1]);
-                    i++; // Skip the literal itself
+                    i++;
                 }
             } else if (isOperand(tokens[i])) {
                 literals.insert(tokens[i]);
@@ -480,8 +476,6 @@ bool check_cnf_valid(const string& cnf_formula) {
             }
         }
         
-        // A CNF formula is valid (a tautology) IFF all its clauses are tautologies.
-        // A clause is a tautology IFF it contains a complementary pair (A + ~A).
         if(!has_complement) {
             return false; 
         }
@@ -549,7 +543,7 @@ bool is_dimacs_clause_true(const Clause& clause) {
     for (Literal lit : clause) {
         if (lit < 0) {
             if (positiveLits.count(-lit)) {
-                return true; // Clause contains a complementary pair (tautology)
+                return true;
             }
         }
     }
@@ -580,7 +574,6 @@ string dimacsToInfix(const DimacsCNF& formula) {
         for (size_t j = 0; j < clause.size(); ++j) {
             Literal lit = clause[j];
             
-            // P-notation is used for variables (P1, P2, ...)
             if (lit < 0) {
                 infix_ss << "~P" << -lit;
             } else {
@@ -641,34 +634,31 @@ string getExpressionFromInput(string requiredFormat) {
     }
 }
 
-// --- Automated Execution Functions for Case 11 ---
-
 void run_automated_case(int case_num, const string& title, const string& input_data, const string& format = "infix") {
     cout << "\n==========================================================================" << endl;
     cout << title << endl;
-    cout << "Input Data: " << (format == "DIMACS" ? "\n" : "") << input_data << (format == "DIMACS" ? "" : "\n") << endl;
     
     try {
-        if (case_num == 1) { // Infix to Prefix
+        if (case_num == 1) { 
             string prefix = infixToPrefix(input_data);
-            cout << "Result Prefix: " << prefix << endl;
-        } else if (case_num == 2) { // Prefix to Parse Tree
+            cout << prefix << endl;
+        } else if (case_num == 2) { 
             string prefix_copy = input_data;
             Node* root = buildParseTree(prefix_copy);
-            cout << "Generated Parse Tree:\n";
+            cout << "Parse Tree:\n";
             printTree(root);
             deleteTree(root);
-        } else if (case_num == 3) { // Tree to Infix - Not used in workflow
+        } else if (case_num == 3) { 
             string prefix_copy = input_data;
             Node* root = buildParseTree(prefix_copy);
-            cout << "Result Infix: " << parseTreeToInfix(root) << endl;
+            cout << "Infix: " << parseTreeToInfix(root) << endl;
             deleteTree(root);
-        } else if (case_num == 4) { // Tree Height
+        } else if (case_num == 4) { 
             string prefix_copy = input_data;
             Node* root = buildParseTree(prefix_copy);
             cout << "Tree Height: " << getTreeHeight(root) << endl;
             deleteTree(root);
-        } else if (case_num == 5) { // Truth Table
+        } else if (case_num == 5) { 
             string prefix = infixToPrefix(input_data);
             Node* root = buildParseTree(prefix);
             set<string> vars;
@@ -678,8 +668,8 @@ void run_automated_case(int case_num, const string& title, const string& input_d
             vector<string> varList(vars.begin(), vars.end());
             int n = varList.size();
 
-            if (n > 5) {
-                cout << "Formula has too many variables (" << n << ") for quick truth table generation. Skipping table." << endl;
+            if (n > 18) {
+                cout << "Cannot generate truth table for formulas with more than 18 variables (Found: " << n << ")." << endl;
                 deleteTree(root);
                 return;
             }
@@ -705,73 +695,75 @@ void run_automated_case(int case_num, const string& title, const string& input_d
                 }
             }
             deleteTree(root);
-        } else if (case_num == 6) { // CNF Conversion
+        } else if (case_num == 6) { 
             string prefix = infixToPrefix(input_data);
             Node* root = buildParseTree(prefix);
             
             cout << "CNF Conversion Steps:" << endl;
             
             Node* impl_free_root = impl_free(root);
-            cout << "   a. Implication-Free: ";
+            cout << "  1. Implication-Free: ";
             printInfixFromTree(impl_free_root);
             cout << endl;
 
             Node* nnf_root = nnf(impl_free_root);
-            cout << "   b. Negation Normal Form (NNF): ";
+            cout << "  2. Negation Normal Form (NNF): ";
             printInfixFromTree(nnf_root);
             cout << endl;
 
             Node* final_cnf_root = cnf(nnf_root);
-            cout << "   c. Conjunctive Normal Form (CNF): ";
-            printInfixFromTree(final_cnf_root);
-            cout << endl;
+            string final_cnf_infix = treeToInfixString(final_cnf_root);
+            cout << "  3. Conjunctive Normal Form (CNF): " << final_cnf_infix << endl;
+            
+            cout << "\n--- Validity Check on Generated CNF ---" << endl;
+            if (final_cnf_infix.empty()) {
+                cout << "  Result: CNF is empty." << endl;
+            } else if (check_cnf_valid(final_cnf_infix)) {
+                cout << "  Result: The CNF formula is valid (a tautology)." << endl;
+            } else {
+                cout << "  Result: The CNF formula is NOT valid (not a tautology)." << endl;
+            }
             
             deleteTree(final_cnf_root);
-        } else if (case_num == 7) { // Check CNF Validity (Infix)
+        } else if (case_num == 7) { 
             bool valid = check_cnf_valid(input_data);
             if (valid)
-                cout << "Validity Check: The CNF formula is valid (a tautology)." << endl;
+                cout << "The CNF formula is valid (a tautology)." << endl;
             else
-                cout << "Validity Check: The CNF formula is NOT valid (not a tautology)." << endl;
-        } else if (case_num == 8) { // Check CNF Validity (DIMACS)
+                cout << "The CNF formula is NOT valid (not a tautology)." << endl;
+        } else if (case_num == 8) { 
             int numVars, numClauses;
             DimacsCNF formula = readDIMACSCNF(input_data, numVars, numClauses);
 
-            cout << "DIMACS Info: " << numVars << " vars, " << numClauses << " clauses, Parsed " << formula.size() << " clauses." << endl;
-            
             bool valid = check_dimacs_valid_formula(formula);
             
             if (valid)
-                cout << "Validity Check: The DIMACS CNF formula is valid (a tautology)." << endl;
+                cout << "The DIMACS CNF formula is valid (a tautology)." << endl;
             else
-                cout << "Validity Check: The DIMACS CNF formula is NOT valid (contains non-tautology clauses)." << endl;
-        } else if (case_num == 9) { // DIMACS to Infix
+                cout << "The DIMACS CNF formula is NOT valid (contains non-tautology clauses)." << endl;
+        } else if (case_num == 9) { 
             int numVars, numClauses;
             DimacsCNF formula = readDIMACSCNF(input_data, numVars, numClauses);
-            cout << "Generated Infix String: " << dimacsToInfix(formula) << endl;
+            cout << "Infix String: " << dimacsToInfix(formula) << endl;
         }
     } catch (const exception& e) {
-        cout << "An ERROR occurred during analysis: " << e.what() << endl;
+        cout << "ERROR during analysis: " << e.what() << endl;
     }
     cout << "==========================================================================" << endl;
 }
 
-// --- NEW USER-DRIVEN WORKFLOW (Replaces hardcoded CASE 11) ---
-
 void run_automated_workflow() {
     cout << "\n==========================================================================" << endl;
-    cout << "CASE 11: USER-DRIVEN WORKFLOW DEMONSTRATION" << endl;
-    cout << "This option runs a series of analysis steps on a single formula you provide." << endl;
+    cout << "AUTOMATED WORKFLOW DEMONSTRATION" << endl;
+    cout << "Runs a series of analysis steps on a single formula you provide." << endl;
     cout << "==========================================================================" << endl;
 
-    // 1. Get Input Type Choice
     int choice;
     cout << "\n  Choose input format for the workflow:" << endl;
     cout << "  1. Infix Formula (e.g., (A > B) * ~C)" << endl;
     cout << "  2. DIMACS CNF Format" << endl;
     cout << "  Enter choice: ";
     
-    // Input validation
     while (!(cin >> choice) || (choice != 1 && choice != 2)) {
         cout << "Invalid input. Please enter 1 or 2." << endl;
         cin.clear();
@@ -783,13 +775,10 @@ void run_automated_workflow() {
     string final_infix;
 
     if (choice == 1) {
-        // Infix input
         cout << "\nEnter Infix formula: ";
         getline(cin, input_data_raw);
         final_infix = input_data_raw;
-        cout << "\nInput received (Infix): " << final_infix << endl;
-    } else { // Choice == 2
-        // DIMACS CNF input
+    } else {
         cout << "\nEnter DIMACS CNF input (paste lines, finish with a blank line): \n";
         string line;
         while (getline(cin, line) && !line.empty()) {
@@ -800,7 +789,7 @@ void run_automated_workflow() {
         DimacsCNF formula = readDIMACSCNF(input_data_raw, numVars, numClauses);
         final_infix = dimacsToInfix(formula);
         
-        cout << "\nInput received (DIMACS). Converted to Infix: " << final_infix << endl;
+        cout << "Converted to Infix: " << final_infix << endl;
     }
 
     if (final_infix.empty()) {
@@ -808,25 +797,14 @@ void run_automated_workflow() {
          return;
     }
     
-    // Convert to Prefix once for reuse in tree operations
     string final_prefix = infixToPrefix(final_infix);
-    cout << "Converted to Prefix: " << final_prefix << endl;
 
-    // 2. Execute Analysis Steps on User Data
     cout << "\n--- ANALYSIS STEPS STARTING ---" << endl;
     
-    // A. Prefix to Parse Tree (Visual)
     run_automated_case(2, "ANALYSIS A: Parse Tree Visualization", final_prefix, "prefix");
-    
-    // B. Tree Height
     run_automated_case(4, "ANALYSIS B: Tree Height Calculation", final_prefix, "prefix");
-    
-    // C. Truth Table
-    // Use final_infix for consistency, as run_automated_case 5 handles infix->prefix
     run_automated_case(5, "ANALYSIS C: Truth Table Generation", final_infix);
-    
-    // D. CNF Conversion
-    run_automated_case(6, "ANALYSIS D: Full CNF Conversion (Impl-Free, NNF, CNF)", final_infix);
+    run_automated_case(6, "ANALYSIS D: Full CNF Conversion and Validity Check", final_infix);
 
     cout << "\n==========================================================================" << endl;
     cout << "USER-DRIVEN WORKFLOW COMPLETE." << endl;
@@ -836,18 +814,18 @@ void run_automated_workflow() {
 void showMenu() {
     cout << "\n--- Propositional Logic Toolkit ---" << endl;
     cout << "Operators: + (OR), * (AND), ~ (NOT), > (implication)" << endl;
-    cout << "Variables: Single letters (P) or P-notation (P1, P10, etc.)" << endl;
+    cout << "Variables: Single letters (A) or P-notation (P1, P10, etc.)" << endl;
     cout << "1. Convert Infix to Prefix" << endl;
     cout << "2. Convert Prefix to Parse Tree (Visual)" << endl;
     cout << "3. Convert Parse Tree back to Infix (from Prefix)" << endl;
     cout << "4. Calculate Height of Parse Tree (from Prefix)" << endl;
-    cout << "5. Evaluate Truth Value of a Formula / Generate Truth Table" << endl;
-    cout << "6. Convert Formula to CNF (Implication-free, NNF, CNF)" << endl;
-    cout << "7. Check Validity of a CNF Formula (Infix String - Tautology check)" << endl;
-    cout << "8. Check Validity of CNF (DIMACS Format - Tautology check)" << endl;
+    cout << "5. Evaluate Truth Value / Generate Truth Table" << endl;
+    cout << "6. Convert Formula to CNF (Impl-free, NNF, CNF) and Check Validity" << endl;
+    cout << "7. Check Validity of a CNF Formula (Infix String)" << endl;
+    cout << "8. Check Validity of CNF (DIMACS Format)" << endl;
     cout << "9. Convert DIMACS to Infix String" << endl;
     cout << "----------------------------------------------------------------" << endl;
-    cout << "11. Run User-Driven Workflow Demonstration (New!)" << endl;
+    cout << "11. Run User-Driven Workflow Demonstration" << endl;
     cout << "12. Exit" << endl;
     cout << "Enter your choice: ";
 }
@@ -874,7 +852,7 @@ int main() {
             case 2: { 
                 string expression = getExpressionFromInput("prefix");
                 Node* root = buildParseTree(expression);
-                cout << "\nGenerated Parse Tree:\n";
+                cout << "\nParse Tree:\n";
                 printTree(root);
                 deleteTree(root);
                 break;
@@ -882,7 +860,7 @@ int main() {
             case 3: { 
                 string expression = getExpressionFromInput("prefix");
                 Node* root = buildParseTree(expression);
-                cout << "Generated Infix: " << parseTreeToInfix(root) << endl;
+                cout << "Infix: " << parseTreeToInfix(root) << endl;
                 deleteTree(root);
                 break;
             }
@@ -894,7 +872,7 @@ int main() {
                 break;
             }
             case 5: { 
-                string expression = getExpressionFromInput("infix"); // Get input as infix (or from DIMACS->infix)
+                string expression = getExpressionFromInput("infix");
                 string prefix_eval = infixToPrefix(expression);
                 Node* root = buildParseTree(prefix_eval);
                 set<string> vars;
@@ -925,16 +903,10 @@ int main() {
                     cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 
                     if (generate_table == 'Y' || generate_table == 'y') {
-                        if (vars.size() > 10) {
-                            cout << "Warning: This formula has " << vars.size() << " variables, generating 2^" << vars.size() << " rows." << endl;
-                            cout << "Are you sure you want to proceed? (Y/N): ";
-                            cin >> generate_table;
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                            if (generate_table != 'Y' && generate_table != 'y') {
-                                cout << "Truth table generation aborted." << endl;
-                                deleteTree(root);
-                                break;
-                            }
+                        if (vars.size() > 18) {
+                            cout << "Cannot generate truth table for formulas with more than 18 variables (Found: " << vars.size() << ")." << endl;
+                            deleteTree(root);
+                            break;
                         }
                         
                         cout << "\n--- Truth Table ---" << endl;
@@ -958,7 +930,7 @@ int main() {
                             try {
                                 cout << (evaluate(root, rowValues) ? "T" : "F") << endl;
                             } catch (const exception& e) {
-                                cout << "ERROR" << endl; // Should not happen if vars are handled
+                                cout << "ERROR" << endl;
                             }
                         }
                     }
@@ -974,7 +946,7 @@ int main() {
                 string prefix_cnf = infixToPrefix(expression);
                 Node* root = buildParseTree(prefix_cnf);
                 
-                cout << "\n--- CNF Conversion (Impl-Free -> NNF -> CNF) ---" << endl;
+                cout << "\n--- CNF Conversion ---" << endl;
                 
                 Node* impl_free_root = impl_free(root);
                 cout << "  1. Implication-Free: ";
@@ -987,10 +959,18 @@ int main() {
                 cout << endl;
 
                 Node* final_cnf_root = cnf(nnf_root);
-                cout << "  3. Conjunctive Normal Form (CNF): ";
-                printInfixFromTree(final_cnf_root);
-                cout << endl;
+                string final_cnf_infix = treeToInfixString(final_cnf_root);
+                cout << "  3. Conjunctive Normal Form (CNF): " << final_cnf_infix << endl;
 
+                cout << "\n--- Validity Check on Generated CNF ---" << endl;
+                if (final_cnf_infix.empty()) {
+                    cout << "  Result: CNF is empty." << endl;
+                } else if (check_cnf_valid(final_cnf_infix)) {
+                    cout << "  Result: The CNF formula is valid (a tautology)." << endl;
+                } else {
+                    cout << "  Result: The CNF formula is NOT valid (not a tautology)." << endl;
+                }
+                
                 deleteTree(final_cnf_root);
                 break;
             }
@@ -1014,9 +994,6 @@ int main() {
                 DimacsCNF formula = readDIMACSCNF(dimacsInput, numVars, numClauses);
                 
                 cout << "\n--- DIMACS Analysis ---" << endl;
-                cout << "Header: " << numVars << " variables, " << numClauses << " clauses." << endl;
-                cout << "Parsed " << formula.size() << " clauses." << endl;
-
                 bool valid = check_dimacs_valid_formula(formula);
                 
                 if (valid)
@@ -1036,7 +1013,7 @@ int main() {
                 DimacsCNF formula = readDIMACSCNF(dimacsInput, numVars, numClauses);
                 
                 cout << "\n--- DIMACS to Infix ---" << endl;
-                cout << "Generated Infix String: " << dimacsToInfix(formula) << endl;
+                cout << "Infix String: " << dimacsToInfix(formula) << endl;
                 break;
             }
             case 11: {
